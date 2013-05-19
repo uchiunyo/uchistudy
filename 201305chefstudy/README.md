@@ -12,9 +12,7 @@ EC2(t1.micro)を用意して、以下コマンドを実行しgitとRuby 1.9.3を
 ------
 ### chefをインストールしてみよう ###
 
-    $ sudo su -
-    # gem install chef
-    # exit
+    $ rvmsudo gem install chef
     
 ### レポジトリを作ってみよう ###
 
@@ -49,8 +47,7 @@ EC2(t1.micro)を用意して、以下コマンドを実行しgitとRuby 1.9.3を
     $ cat solo.rb
       file_cache_path "/tmp/chef-solo"
       cookbook_path ["/home/ec2-user/chef-repo/cookbooks"]
-    $ sudo su
-    # chef-solo -c solo.rb -j ec2.json
+    $ rvmsudo chef-solo -c solo.rb -j ec2.json
       Starting Chef Client, version 11.4.4
       Compiling Cookbooks...
       Converging 1 resources
@@ -73,5 +70,4 @@ EC2(t1.micro)を用意して、以下コマンドを実行しgitとRuby 1.9.3を
           "recipe[mysql]"
         ]
       }
-    $ sudo su
-    # chef-solo -c solo.rb -j ec2.json
+    $ rvmsudo chef-solo -c solo.rb -j ec2.json
