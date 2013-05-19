@@ -50,10 +50,28 @@ EC2(t1.micro)を用意して、以下コマンドを実行しgitとRuby 1.9.3を
       file_cache_path "/tmp/chef-solo"
       cookbook_path ["/home/ec2-user/chef-repo/cookbooks"]
     $ sudo su
-    # chef-solo -c solo.rb -j ./ec2.json
+    # chef-solo -c solo.rb -j ec2.json
       Starting Chef Client, version 11.4.4
       Compiling Cookbooks...
       Converging 1 resources
       Recipe: helloworld::default
         * log[Hello World!!] action write
       Chef Client finished, 1 resources updated
+      
+------
+### chefでmysqlを入れてみよう
+
+    $ cd ~
+    $ git clone https://github.com/uchiunyo/uchistudy.git
+    $ mv uchistudy/201305chefstudy/mysql chef-repo/cookbooks/
+    $ cd chef-repo
+    $ vi ec2.json
+    $ cat ec2.json
+      {
+        "run_list":[
+          "recipe[helloworld]",
+          "recipe[mysql]"
+        ]
+      }
+    $ sudo su
+    # chef-solo -c solo.rb -j ec2.json
