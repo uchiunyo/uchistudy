@@ -46,7 +46,7 @@ EC2(t1.micro)を用意して、以下コマンドを実行しgitとRuby 1.9.3を
     $ vi solo.rb
     $ cat solo.rb
       file_cache_path "/tmp/chef-solo"
-      cookbook_path ["/home/ec2-user/chef-repo/cookbooks"]
+      cookbook_path "/home/ec2-user/chef-repo/cookbooks"
     $ rvmsudo chef-solo -c solo.rb -j ec2.json
       Starting Chef Client, version 11.4.4
       Compiling Cookbooks...
@@ -71,3 +71,25 @@ EC2(t1.micro)を用意して、以下コマンドを実行しgitとRuby 1.9.3を
         ]
       }
     $ rvmsudo chef-solo -c solo.rb -j ec2.json
+    
+### mysqlにログインできましたね！！
+
+    $ mysql -uroot
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 4
+    Server version: 5.5.31 MySQL Community Server (GPL)
+    Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.    
+    Oracle is a registered trademark of Oracle Corporation and/or its
+    affiliates. Other names may be trademarks of their respective
+    owners.
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    mysql> show databases;
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | test               |
+    +--------------------+
+    4 rows in set (0.00 sec)
